@@ -339,6 +339,21 @@ Discarded input sections
  .debug_macro   0x00000000      0x202 Application/User/i2c.o
  .debug_macro   0x00000000      0x287 Application/User/i2c.o
  .debug_macro   0x00000000      0x11e Application/User/i2c.o
+ .group         0x00000000        0x8 Application/User/lep_i2c.o
+ .text          0x00000000        0x0 Application/User/lep_i2c.o
+ .data          0x00000000        0x0 Application/User/lep_i2c.o
+ .bss           0x00000000        0x0 Application/User/lep_i2c.o
+ .debug_info    0x00000000       0x21 Application/User/lep_i2c.o
+ .debug_abbrev  0x00000000       0x13 Application/User/lep_i2c.o
+ .debug_aranges
+                0x00000000       0x18 Application/User/lep_i2c.o
+ .debug_macro   0x00000000       0x11 Application/User/lep_i2c.o
+ .debug_macro   0x00000000      0x89e Application/User/lep_i2c.o
+ .debug_line    0x00000000       0x3e Application/User/lep_i2c.o
+ .debug_str     0x00000000     0x2568 Application/User/lep_i2c.o
+ .comment       0x00000000       0x6f Application/User/lep_i2c.o
+ .ARM.attributes
+                0x00000000       0x39 Application/User/lep_i2c.o
  .group         0x00000000        0x8 Application/User/main.o
  .group         0x00000000        0x8 Application/User/main.o
  .group         0x00000000        0x8 Application/User/main.o
@@ -4067,6 +4082,7 @@ LOAD Application/SW4STM32/startup_stm32f401xe.o
 LOAD Application/User/dma.o
 LOAD Application/User/gpio.o
 LOAD Application/User/i2c.o
+LOAD Application/User/lep_i2c.o
 LOAD Application/User/main.o
 LOAD Application/User/spi.o
 LOAD Application/User/stm32f4xx_hal_msp.o

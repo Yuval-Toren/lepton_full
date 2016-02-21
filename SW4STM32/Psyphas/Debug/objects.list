@@ -2,6 +2,7 @@
 "Application/User/dma.o"
 "Application/User/gpio.o"
 "Application/User/i2c.o"
+"Application/User/lep_i2c.o"
 "Application/User/main.o"
 "Application/User/spi.o"
 "Application/User/stm32f4xx_hal_msp.o"
