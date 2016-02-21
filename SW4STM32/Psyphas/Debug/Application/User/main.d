@@ -32,7 +32,8 @@ Application/User/main.o: C:/Users/Yuval/workspace/Psyphas/Src/main.c \
  C:/Users/Yuval/workspace/Psyphas/Inc/i2c.h \
  C:/Users/Yuval/workspace/Psyphas/Inc/spi.h \
  C:/Users/Yuval/workspace/Psyphas/Inc/usart.h \
- C:/Users/Yuval/workspace/Psyphas/Inc/gpio.h
+ C:/Users/Yuval/workspace/Psyphas/Inc/gpio.h \
+ C:/Users/Yuval/workspace/Psyphas/Inc/lep_i2c.h
 
 C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -101,3 +102,5 @@ C:/Users/Yuval/workspace/Psyphas/Inc/spi.h:
 C:/Users/Yuval/workspace/Psyphas/Inc/usart.h:
 
 C:/Users/Yuval/workspace/Psyphas/Inc/gpio.h:
+
+C:/Users/Yuval/workspace/Psyphas/Inc/lep_i2c.h:
