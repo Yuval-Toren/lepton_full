@@ -46,11 +46,10 @@
 
 #define IMAGE_NUM_LINES 60
 
-#define LEPTON_ADDRESS  (0x2A<<1)
+#define LEPTON_ADDRESS  (0x54)
 
 #define POWER_REG (0x00)
 #define STATUS_REG (0x02)
-#define COMMAND_REG (0x04)
 #define DATA_CRC_REG (0x28)
 
 #define COMMANDID_REG (0x04)
@@ -96,7 +95,7 @@ void lepton_command(unsigned int moduleID, unsigned int commandID, unsigned int 
 {
   HAL_StatusTypeDef error;
   uint8_t data_write[4];
-  uint8_t er[1] = {'e'};
+  uint8_t er[1] = {'a'};
 
   // Command Register is a 16-bit register located at Register Address 0x0004
   data_write[0] = (0x00);
@@ -106,26 +105,28 @@ void lepton_command(unsigned int moduleID, unsigned int commandID, unsigned int 
   data_write[3] = (((commandID << 2 ) & 0xfc) | (command & 0x3));
 
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
 
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
 }
 
 void set_reg(unsigned int reg)
 {
   HAL_StatusTypeDef error;
-  uint8_t er[1] = {'e'};
+  uint8_t er[1] = {'c'};
   uint8_t data_write[2];
   data_write[0] = (reg >> 8 & 0xff);
   data_write[1] = (reg & 0xff);
 
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 2, 1000);
+  HAL_Delay(5);
 
    if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
 }
 
@@ -137,6 +138,7 @@ int read_reg(unsigned int reg)
   uint8_t read_data[2];
   set_reg(reg);
   HAL_I2C_Master_Receive(&hi2c1, LEPTON_ADDRESS, read_data, 2, 1000);
+  HAL_Delay(5);
   reading = read_data[0];  // receive high byte (overwrites previous reading)
   reading = reading << 8;    // shift high byte to be high 8 bits
 
@@ -155,7 +157,7 @@ int read_metric_data()
 
   while (read_reg(0x2) & 0x01)
   {
-    HAL_UART_Transmit(&huart1, busy , 5, 1000);
+    HAL_UART_Transmit(&huart1, busy , 1, 1000);
   }
 
   payload_length = read_reg(0x6);
@@ -163,6 +165,7 @@ int read_metric_data()
   for (i = 0; i < (payload_length / 2); i++)
   {
     HAL_I2C_Master_Receive(&hi2c1, LEPTON_ADDRESS, data_read, 2, 1000);
+    HAL_Delay(5);
     data = data_read[0] << 8;
     data |= data_read[1];
     sum = sum+data;
@@ -173,7 +176,7 @@ int read_metric_data()
 void metric_enable()
 {
   HAL_StatusTypeDef error;
-  uint8_t er[1] = {'e'};
+  uint8_t er[1] = {'d'};
   uint8_t data_write[4];
   //16bit data_reg address
   data_write[0] = (0x00);
@@ -182,9 +185,10 @@ void metric_enable()
   data_write[2] = (0x00);
   data_write[3] = (0x01);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
   //16bit data_len address
   data_write[0] = (0x00);
@@ -193,9 +197,10 @@ void metric_enable()
   data_write[2] = (0x00);
   data_write[3] = (0x02);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
   //16bit command_reg address
   data_write[0] = (0x00);
@@ -204,9 +209,10 @@ void metric_enable()
   data_write[2] = (0x03);
   data_write[3] = (0x0D);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
 }
 
@@ -222,9 +228,10 @@ void tresh()
   data_write[2] = (0x75);
   data_write[3] = (0x30);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
   //16bit data_len address
   data_write[0] = (0x00);
@@ -233,9 +240,10 @@ void tresh()
   data_write[2] = (0x00);
   data_write[3] = (0x02);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
   //16bit command_reg address
   data_write[0] = (0x00);
@@ -244,9 +252,10 @@ void tresh()
   data_write[2] = (0x03);
   data_write[3] = (0x15);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
 }
 
@@ -278,32 +287,54 @@ int main(void)
 
   uint8_t packet[VOSPI_FRAME_SIZE*IMAGE_NUM_LINES];
   HAL_StatusTypeDef status;
-  HAL_Delay(185);
+  HAL_Delay(2000);
+  uint8_t i = 0;
+  uint8_t j = 0;
+  uint8_t send_d[1] = {0};
 
-  do {
+  read_reg(0x2);
+
+
+  metric_enable();
+  tresh();
+
+  //do {
 
 	  //HAL_Delay(200);
-  	      if ((status = HAL_SPI_Receive(&hspi1, packet, VOSPI_FRAME_SIZE,200)) != HAL_OK)
-  	      {
-  	    	 printf("error");
-  	    	 HAL_Delay(200);
-  	      }
-  	    } while ((packet[0] & 0x0f) == 0x0f);
+  	      //if ((status = HAL_SPI_Receive(&hspi1, packet, VOSPI_FRAME_SIZE,200)) != HAL_OK)
+  	      //{
+  	    	 //printf("error");
+  	    	 //HAL_Delay(200);
+  	      //}
+  	    //} while ((packet[0] & 0x0f) == 0x0f);
 
 
   while (1)
   {
-	  status = HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
-	  if(packet[0]& 0x0f != 0x0f)
+
+	  lepton_command(VID, 0x18 >> 2 , GET);
+	  j = read_metric_data();
+	  lepton_command(VID, 0x18 >> 2 , GET);
+	  i = read_metric_data();
+	  //send_d[0] = i-j;
+	  //HAL_UART_Transmit(&huart1,send_d,1,1000);
+	  if(((i-j) > 40)||((j-i) > 40))
 	  {
-	  	  HAL_UART_Transmit(&huart1,&packet[1],1,1000);
-	  }
-	  else
-	  {
+		send_d[0] = 's';
+		HAL_UART_Transmit(&huart1,send_d,1,1000);
+	   }
+
+	  //status = HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
+	  //if(packet[0]& 0x0f != 0x0f)
+	  //{
+	  	  //HAL_UART_Transmit(&huart1,&packet[1],1,1000);
+	  //}
+	  //else
+	  //{
 		  //HAL_SPI_DMAPause(&hspi1);
-		  HAL_Delay(200);
+		  //HAL_Delay(200);
 		  //HAL_SPI_DMAResume(&hspi1);
-	  }
+	  //}
 
   }
 

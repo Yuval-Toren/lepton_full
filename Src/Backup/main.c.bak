@@ -46,7 +46,7 @@
 
 #define IMAGE_NUM_LINES 60
 
-#define LEPTON_ADDRESS  (0x2A<<1)
+#define LEPTON_ADDRESS  (0x54)
 
 #define POWER_REG (0x00)
 #define STATUS_REG (0x02)
@@ -109,7 +109,7 @@ void lepton_command(unsigned int moduleID, unsigned int commandID, unsigned int 
 
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
 }
 
@@ -125,7 +125,7 @@ void set_reg(unsigned int reg)
 
    if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
 }
 
@@ -155,7 +155,7 @@ int read_metric_data()
 
   while (read_reg(0x2) & 0x01)
   {
-    HAL_UART_Transmit(&huart1, busy , 5, 1000);
+    HAL_UART_Transmit(&huart1, busy , 1, 1000);
   }
 
   payload_length = read_reg(0x6);
@@ -184,7 +184,7 @@ void metric_enable()
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
   //16bit data_len address
   data_write[0] = (0x00);
@@ -195,7 +195,7 @@ void metric_enable()
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
   //16bit command_reg address
   data_write[0] = (0x00);
@@ -206,7 +206,7 @@ void metric_enable()
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
 }
 
@@ -224,7 +224,7 @@ void tresh()
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
   //16bit data_len address
   data_write[0] = (0x00);
@@ -235,7 +235,7 @@ void tresh()
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
   //16bit command_reg address
   data_write[0] = (0x00);
@@ -246,7 +246,7 @@ void tresh()
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
   if (error != 0)
   {
-    HAL_UART_Transmit(&huart1, er, 5, 1000);
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
   }
 }
 
@@ -279,31 +279,51 @@ int main(void)
   uint8_t packet[VOSPI_FRAME_SIZE*IMAGE_NUM_LINES];
   HAL_StatusTypeDef status;
   HAL_Delay(185);
+  uint8_t i = 0;
+  uint8_t j = 0;
+  uint8_t send_d[1] = {0};
 
-  do {
+  read_reg(0x2);
+
+
+  metric_enable();
+  tresh();
+
+  //do {
 
 	  //HAL_Delay(200);
-  	      if ((status = HAL_SPI_Receive(&hspi1, packet, VOSPI_FRAME_SIZE,200)) != HAL_OK)
-  	      {
-  	    	 printf("error");
-  	    	 HAL_Delay(200);
-  	      }
-  	    } while ((packet[0] & 0x0f) == 0x0f);
+  	      //if ((status = HAL_SPI_Receive(&hspi1, packet, VOSPI_FRAME_SIZE,200)) != HAL_OK)
+  	      //{
+  	    	 //printf("error");
+  	    	 //HAL_Delay(200);
+  	      //}
+  	    //} while ((packet[0] & 0x0f) == 0x0f);
 
 
   while (1)
   {
-	  status = HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
-	  if(packet[0]& 0x0f != 0x0f)
+
+	  lepton_command(VID, 0x18 >> 2 , GET);
+	  j = read_metric_data();
+	  lepton_command(VID, 0x18 >> 2 , GET);
+	  i = read_metric_data();
+	  if((i-j) > 300)
 	  {
-	  	  HAL_UART_Transmit(&huart1,&packet[1],1,1000);
-	  }
-	  else
-	  {
+		send_d[0] = i-j;
+		HAL_UART_Transmit(&huart1,send_d,1,1000);
+	   }
+
+	  //status = HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
+	  //if(packet[0]& 0x0f != 0x0f)
+	  //{
+	  	  //HAL_UART_Transmit(&huart1,&packet[1],1,1000);
+	  //}
+	  //else
+	  //{
 		  //HAL_SPI_DMAPause(&hspi1);
-		  HAL_Delay(200);
+		  //HAL_Delay(200);
 		  //HAL_SPI_DMAResume(&hspi1);
-	  }
+	  //}
 
   }
 
