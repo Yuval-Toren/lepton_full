@@ -45,6 +45,43 @@
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
+#define LEPTON_ADDRESS  (0x54)
+
+#define POWER_REG (0x00)
+#define STATUS_REG (0x02)
+#define DATA_CRC_REG (0x28)
+
+#define COMMANDID_REG (0x04)
+#define DATALEN_REG (0x06)
+#define DATA0 (0x08)
+
+#define AGC (0x01)
+#define SYS (0x02)
+#define VID (0x03)
+#define OEM (0x48)
+
+#define GET (0x00)
+#define SET (0x01)
+#define RUN (0x02)
+
+#define PING                        (0x00 )
+#define CAM_STATUS                  (0x04 )
+#define FLIR_SERIAL_NUMBER          (0x08 )
+#define CAM_UPTIME                  (0x0C )
+#define AUX_TEMPERATURE_KELVIN      (0x10 )
+#define FPA_TEMPERATURE_KELVIN      (0x14 )
+#define TELEMETRY_ENABLE_STATE      (0x18 )
+#define TELEMETRY_LOCATION          (0x1C )
+#define EXECTUE_FRAME_AVERAGE       (0x20 )
+#define NUM_FRAMES_TO_AVERAGE       (0x24 )
+#define CUST_SERIAL_NUMBER          (0x28 )
+#define SCENE_STATISTICS            (0x2C )
+#define SCENE_ROI                   (0x30 )
+#define THERMAL_SHUTDOWN_COUNT      (0x34 )
+#define SHUTTER_POSITION            (0x38 )
+#define FFC_SHUTTER_MODE_OBJ        (0x3C )
+#define RUN_FFC                     (0x42 )
+#define FFC_STATUS                  (0x44 )
 
 #define IMAGE_NUM_LINES 60
 #define VOSPI_FRAME_SIZE 164
@@ -54,6 +91,173 @@ uint8_t header[4];
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 
+void lepton_command(unsigned int moduleID, unsigned int commandID, unsigned int command)
+{
+  HAL_StatusTypeDef error;
+  uint8_t data_write[4];
+  uint8_t er[1] = {'a'};
+
+  // Command Register is a 16-bit register located at Register Address 0x0004
+  data_write[0] = (0x00);
+  data_write[1] = (0x04);
+
+  data_write[2] = (moduleID & 0x0f);
+  data_write[3] = (((commandID << 2 ) & 0xfc) | (command & 0x3));
+
+  error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
+
+  if (error != 0)
+  {
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
+  }
+}
+
+void set_reg(unsigned int reg)
+{
+  HAL_StatusTypeDef error;
+  uint8_t er[1] = {'c'};
+  uint8_t data_write[2];
+  data_write[0] = (reg >> 8 & 0xff);
+  data_write[1] = (reg & 0xff);
+
+  error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 2, 1000);
+  HAL_Delay(5);
+
+   if (error != 0)
+  {
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
+  }
+}
+
+//Status reg 15:8 Error Code  7:3 Reserved 2:Boot Status 1:Boot Mode 0:busy
+
+int read_reg(unsigned int reg)
+{
+  int reading = 0;
+  uint8_t read_data[2];
+  set_reg(reg);
+  HAL_I2C_Master_Receive(&hi2c1, LEPTON_ADDRESS, read_data, 2, 1000);
+  HAL_Delay(5);
+  reading = read_data[0];  // receive high byte (overwrites previous reading)
+  reading = reading << 8;    // shift high byte to be high 8 bits
+
+  reading |= read_data[1]; // receive low byte as lower 8 bits
+  return reading;
+}
+
+uint32_t read_metric_data()
+{
+  int i;
+  uint32_t data;
+  int payload_length;
+  uint32_t sum = 0;
+  uint8_t data_read[2];
+  uint8_t busy[1] = {'b'};
+
+  while (read_reg(0x2) & 0x01)
+  {
+    HAL_UART_Transmit(&huart1, busy , 1, 1000);
+  }
+
+  payload_length = read_reg(0x6);
+
+  for (i = 0; i < (payload_length / 2); i++)
+  {
+    HAL_I2C_Master_Receive(&hi2c1, LEPTON_ADDRESS, data_read, 2, 1000);
+    HAL_Delay(5);
+    data = data_read[0] << 8;
+    data |= data_read[1];
+    sum = sum+data;
+  }
+  return sum;
+}
+
+void metric_enable()
+{
+  HAL_StatusTypeDef error;
+  uint8_t er[1] = {'d'};
+  uint8_t data_write[4];
+  //16bit data_reg address
+  data_write[0] = (0x00);
+  data_write[1] = (DATA0);
+  //16bit command equivalent to SDK LEP_GetAgcEnableState()
+  data_write[2] = (0x00);
+  data_write[3] = (0x01);
+  error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
+  if (error != 0)
+  {
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
+  }
+  //16bit data_len address
+  data_write[0] = (0x00);
+  data_write[1] = (DATALEN_REG);
+  //16bit value for number of bytes in data_regs (not number of regs)
+  data_write[2] = (0x00);
+  data_write[3] = (0x02);
+  error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
+  if (error != 0)
+  {
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
+  }
+  //16bit command_reg address
+  data_write[0] = (0x00);
+  data_write[1] = (COMMANDID_REG);
+  //16bit module id of AGC (0x0100) binary AND with SET (0x01) and then split into 2 bytes (0x0101)
+  data_write[2] = (0x03);
+  data_write[3] = (0x0D);
+  error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
+  if (error != 0)
+  {
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
+  }
+}
+
+void tresh()
+{
+  HAL_StatusTypeDef error;
+  uint8_t er[1] = {'e'};
+  uint8_t data_write[4];
+  //16bit data_reg address
+  data_write[0] = (0x00);
+  data_write[1] = (DATA0);
+  //16bit command equivalent to SDK LEP_GetAgcEnableState()
+  data_write[2] = (0x75);
+  data_write[3] = (0x30);
+  error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
+  if (error != 0)
+  {
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
+  }
+  //16bit data_len address
+  data_write[0] = (0x00);
+  data_write[1] = (DATALEN_REG);
+  //16bit value for number of bytes in data_regs (not number of regs)
+  data_write[2] = (0x00);
+  data_write[3] = (0x02);
+  error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
+  if (error != 0)
+  {
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
+  }
+  //16bit command_reg address
+  data_write[0] = (0x00);
+  data_write[1] = (COMMANDID_REG);
+  //16bit module id of AGC (0x0100) binary AND with SET (0x01) and then split into 2 bytes (0x0101)
+  data_write[2] = (0x03);
+  data_write[3] = (0x15);
+  error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
+  HAL_Delay(5);
+  if (error != 0)
+  {
+    HAL_UART_Transmit(&huart1, er, 1, 1000);
+  }
+}
 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -85,8 +289,8 @@ int main(void)
   uint8_t packet[VOSPI_FRAME_SIZE*IMAGE_NUM_LINES];
   HAL_StatusTypeDef status;
   HAL_Delay(2000);
-  uint8_t i = 0;
-  uint8_t j = 0;
+  uint32_t i = 0;
+  uint32_t j = 0;
   uint8_t send_d[1] = {0};
 
   read_reg(0x2);
@@ -115,9 +319,9 @@ int main(void)
 	  i = read_metric_data();
 	  //send_d[0] = i-j;
 	  //HAL_UART_Transmit(&huart1,send_d,1,1000);
-	  if(((i-j) > 40)||((j-i) > 40))
+	  if(((i-j) > 65000))
 	  {
-		send_d[0] = 's';
+		send_d[0] = i-j;
 		HAL_UART_Transmit(&huart1,send_d,1,1000);
 	   }
 
