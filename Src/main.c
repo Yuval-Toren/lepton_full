@@ -38,7 +38,6 @@
 #include "usart.h"
 #include "gpio.h"
 
-#include "lep_i2c.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -105,7 +104,7 @@ void lepton_command(unsigned int moduleID, unsigned int commandID, unsigned int 
   data_write[3] = (((commandID << 2 ) & 0xfc) | (command & 0x3));
 
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
-  HAL_Delay(5);
+  HAL_Delay(1);
 
   if (error != 0)
   {
@@ -122,7 +121,7 @@ void set_reg(unsigned int reg)
   data_write[1] = (reg & 0xff);
 
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 2, 1000);
-  HAL_Delay(5);
+  HAL_Delay(1);
 
    if (error != 0)
   {
@@ -138,7 +137,7 @@ int read_reg(unsigned int reg)
   uint8_t read_data[2];
   set_reg(reg);
   HAL_I2C_Master_Receive(&hi2c1, LEPTON_ADDRESS, read_data, 2, 1000);
-  HAL_Delay(5);
+  HAL_Delay(1);
   reading = read_data[0];  // receive high byte (overwrites previous reading)
   reading = reading << 8;    // shift high byte to be high 8 bits
 
@@ -165,7 +164,7 @@ uint32_t read_metric_data()
   for (i = 0; i < (payload_length / 2); i++)
   {
     HAL_I2C_Master_Receive(&hi2c1, LEPTON_ADDRESS, data_read, 2, 1000);
-    HAL_Delay(5);
+    HAL_Delay(1);
     data = data_read[0] << 8;
     data |= data_read[1];
     sum = sum+data;
@@ -185,7 +184,7 @@ void metric_enable()
   data_write[2] = (0x00);
   data_write[3] = (0x01);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
-  HAL_Delay(5);
+  HAL_Delay(1);
   if (error != 0)
   {
     HAL_UART_Transmit(&huart1, er, 1, 1000);
@@ -197,7 +196,7 @@ void metric_enable()
   data_write[2] = (0x00);
   data_write[3] = (0x02);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
-  HAL_Delay(5);
+  HAL_Delay(1);
   if (error != 0)
   {
     HAL_UART_Transmit(&huart1, er, 1, 1000);
@@ -209,7 +208,7 @@ void metric_enable()
   data_write[2] = (0x03);
   data_write[3] = (0x0D);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
-  HAL_Delay(5);
+  HAL_Delay(1);
   if (error != 0)
   {
     HAL_UART_Transmit(&huart1, er, 1, 1000);
@@ -228,7 +227,7 @@ void tresh()
   data_write[2] = (0x75);
   data_write[3] = (0x30);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
-  HAL_Delay(5);
+  HAL_Delay(1);
   if (error != 0)
   {
     HAL_UART_Transmit(&huart1, er, 1, 1000);
@@ -240,7 +239,7 @@ void tresh()
   data_write[2] = (0x00);
   data_write[3] = (0x02);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
-  HAL_Delay(5);
+  HAL_Delay(1);
   if (error != 0)
   {
     HAL_UART_Transmit(&huart1, er, 1, 1000);
@@ -252,7 +251,7 @@ void tresh()
   data_write[2] = (0x03);
   data_write[3] = (0x15);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
-  HAL_Delay(5);
+  HAL_Delay(1);
   if (error != 0)
   {
     HAL_UART_Transmit(&huart1, er, 1, 1000);
@@ -265,11 +264,6 @@ void tresh()
 
 int main(void)
 {
-
-  /* USER CODE BEGIN 1 */
-
-  /* USER CODE END 1 */
-
   /* MCU Configuration----------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -286,12 +280,12 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
 
-  uint8_t packet[VOSPI_FRAME_SIZE*IMAGE_NUM_LINES];
-  HAL_StatusTypeDef status;
+  //uint8_t packet[VOSPI_FRAME_SIZE*IMAGE_NUM_LINES];
+  //HAL_StatusTypeDef status;
   HAL_Delay(2000);
   uint32_t i = 0;
   uint32_t j = 0;
-  uint8_t send_d[1] = {0};
+  uint32_t send_d[1] = {0};
 
   read_reg(0x2);
 
@@ -317,13 +311,22 @@ int main(void)
 	  j = read_metric_data();
 	  lepton_command(VID, 0x18 >> 2 , GET);
 	  i = read_metric_data();
-	  //send_d[0] = i-j;
-	  //HAL_UART_Transmit(&huart1,send_d,1,1000);
-	  if(((i-j) > 65000))
+	  if(i > j)
 	  {
-		send_d[0] = i-j;
-		HAL_UART_Transmit(&huart1,send_d,1,1000);
+		  if((i-j) > 100)
+		  {
+			  send_d[0] = 's';
+			  HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
+		  }
 	   }
+	  else
+	  {
+		  if((j-i) > 100)
+		  {
+			  send_d[0] = 'n';
+			  HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
+		  }
+	  }
 
 	  //status = HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
 	  //if(packet[0]& 0x0f != 0x0f)
