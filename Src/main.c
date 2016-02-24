@@ -180,7 +180,6 @@ void metric_enable()
   //16bit data_reg address
   data_write[0] = (0x00);
   data_write[1] = (DATA0);
-  //16bit command equivalent to SDK LEP_GetAgcEnableState()
   data_write[2] = (0x00);
   data_write[3] = (0x01);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
@@ -204,7 +203,7 @@ void metric_enable()
   //16bit command_reg address
   data_write[0] = (0x00);
   data_write[1] = (COMMANDID_REG);
-  //16bit module id of AGC (0x0100) binary AND with SET (0x01) and then split into 2 bytes (0x0101)
+  //16bit module id of VID (0x0300) binary AND with Enable focus metric calculation (0x0D)
   data_write[2] = (0x03);
   data_write[3] = (0x0D);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
@@ -215,7 +214,7 @@ void metric_enable()
   }
 }
 
-void tresh()
+void thresh()
 {
   HAL_StatusTypeDef error;
   uint8_t er[1] = {'e'};
@@ -223,7 +222,6 @@ void tresh()
   //16bit data_reg address
   data_write[0] = (0x00);
   data_write[1] = (DATA0);
-  //16bit command equivalent to SDK LEP_GetAgcEnableState()
   data_write[2] = (0x75);
   data_write[3] = (0x30);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
@@ -247,7 +245,7 @@ void tresh()
   //16bit command_reg address
   data_write[0] = (0x00);
   data_write[1] = (COMMANDID_REG);
-  //16bit module id of AGC (0x0100) binary AND with SET (0x01) and then split into 2 bytes (0x0101)
+  //16bit module id of VID (0x0300) binary AND with focus metric threshold (0x15)
   data_write[2] = (0x03);
   data_write[3] = (0x15);
   error = HAL_I2C_Master_Transmit(&hi2c1, LEPTON_ADDRESS, data_write, 4, 1000);
@@ -291,7 +289,7 @@ int main(void)
 
 
   metric_enable();
-  tresh();
+  thresh();
 
   //do {
 
@@ -311,7 +309,7 @@ int main(void)
 	  j = read_metric_data();
 	  lepton_command(VID, 0x18 >> 2 , GET);
 	  i = read_metric_data();
-	  if(i > j)
+	  if(i > j)//This check is done because uint32_t can't get a negative number
 	  {
 		  if((i-j) > 100)
 		  {
