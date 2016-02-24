@@ -278,34 +278,34 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
 
-  //uint8_t packet[VOSPI_FRAME_SIZE*IMAGE_NUM_LINES];
-  //HAL_StatusTypeDef status;
+  uint8_t packet[VOSPI_FRAME_SIZE*IMAGE_NUM_LINES];
+  HAL_StatusTypeDef status;
   HAL_Delay(2000);
   uint32_t i = 0;
   uint32_t j = 0;
   uint32_t send_d[1] = {0};
 
-  read_reg(0x2);
+  //read_reg(0x2);
 
 
-  metric_enable();
-  thresh();
+  //metric_enable();
+  //thresh();
 
-  //do {
+  do {
 
-	  //HAL_Delay(200);
-  	      //if ((status = HAL_SPI_Receive(&hspi1, packet, VOSPI_FRAME_SIZE,200)) != HAL_OK)
-  	      //{
-  	    	 //printf("error");
+	  HAL_Delay(200);
+  	      if ((status = HAL_SPI_Receive(&hspi1, packet, VOSPI_FRAME_SIZE,200)) != HAL_OK)
+  	      {
+  	    	 printf("error");
   	    	 //HAL_Delay(200);
-  	      //}
-  	    //} while ((packet[0] & 0x0f) == 0x0f);
+  	      }
+  	    } while ((packet[0] & 0x0f) == 0x0f);
 
 
   while (1)
   {
 
-	  lepton_command(VID, 0x18 >> 2 , GET);
+	  /*lepton_command(VID, 0x18 >> 2 , GET);
 	  j = read_metric_data();
 	  lepton_command(VID, 0x18 >> 2 , GET);
 	  i = read_metric_data();
@@ -324,19 +324,9 @@ int main(void)
 			  send_d[0] = 'n';
 			  HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
 		  }
-	  }
+	  }*/
 
-	  //status = HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
-	  //if(packet[0]& 0x0f != 0x0f)
-	  //{
-	  	  //HAL_UART_Transmit(&huart1,&packet[1],1,1000);
-	  //}
-	  //else
-	  //{
-		  //HAL_SPI_DMAPause(&hspi1);
-		  //HAL_Delay(200);
-		  //HAL_SPI_DMAResume(&hspi1);
-	  //}
+	  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
 
   }
 
@@ -382,9 +372,31 @@ void SystemClock_Config(void)
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
 }
 
-/* USER CODE BEGIN 4 */
+void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)//Happens at the end of RX transaction
+{
+	int send_d[1] = {'0'};
+	uint8_t* data = hspi->pRxBuffPtr;
+	int frame;
+	frame = data[0] & 0xf;
 
-/* USER CODE END 4 */
+	if(frame != 0xf)
+	{
+		send_d[0] = frame;//everything is O.K.
+		HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
+	}
+	else
+	{
+		send_d[0] = 'r';//need re-sync
+		HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
+	}
+
+
+}
+
+void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
+{
+
+}
 
 #ifdef USE_FULL_ASSERT
 
