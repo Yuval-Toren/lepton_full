@@ -86,6 +86,7 @@
 #define VOSPI_FRAME_SIZE 164
 uint8_t Lep_Img[60][160];
 uint8_t header[4];
+uint8_t dma_done=1;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -293,7 +294,7 @@ int main(void)
 
   do {
 
-	  HAL_Delay(200);
+	  //HAL_Delay(200);
   	      if ((status = HAL_SPI_Receive(&hspi1, packet, VOSPI_FRAME_SIZE,200)) != HAL_OK)
   	      {
   	    	 printf("error");
@@ -301,9 +302,6 @@ int main(void)
   	      }
   	    } while ((packet[0] & 0x0f) == 0x0f);
 
-
-  while (1)
-  {
 
 	  /*lepton_command(VID, 0x18 >> 2 , GET);
 	  j = read_metric_data();
@@ -325,8 +323,12 @@ int main(void)
 			  HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
 		  }
 	  }*/
-
-	  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
+  while (1)
+  {
+	  if (dma_done==1) {
+		  dma_done=0;
+		  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
+	  }
 
   }
 
@@ -377,8 +379,13 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)//Happens at the end of RX t
 	int send_d[1] = {'0'};
 	uint8_t* data = hspi->pRxBuffPtr;
 	int frame;
+	frame=1;
 	frame = data[0] & 0xf;
+	uint8_t frame2 = data[1];
 
+	if (frame2 == 1) {
+		frame2=1;
+	}
 	if(frame != 0xf)
 	{
 		send_d[0] = frame;//everything is O.K.
@@ -390,6 +397,7 @@ void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)//Happens at the end of RX t
 		HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
 	}
 
+	  dma_done=1;
 
 }
 

@@ -75,7 +75,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal.o: C:/Users/Yuval/workspace/Psyphas/D
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -83,7 +83,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_cortex.o: C:/Users/Yuval/workspace/Ps
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -91,7 +91,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma.o: C:/Users/Yuval/workspace/Psyph
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -99,7 +99,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_dma_ex.o: C:/Users/Yuval/workspace/Ps
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -107,7 +107,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash.o: C:/Users/Yuval/workspace/Psy
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -115,7 +115,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ex.o: C:/Users/Yuval/workspace/
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -123,7 +123,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_flash_ramfunc.o: C:/Users/Yuval/works
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -131,7 +131,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_gpio.o: C:/Users/Yuval/workspace/Psyp
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -139,7 +139,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c.o: C:/Users/Yuval/workspace/Psyph
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -147,7 +147,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_i2c_ex.o: C:/Users/Yuval/workspace/Ps
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -155,7 +155,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr.o: C:/Users/Yuval/workspace/Psyph
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -163,7 +163,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_pwr_ex.o: C:/Users/Yuval/workspace/Ps
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -171,7 +171,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc.o: C:/Users/Yuval/workspace/Psyph
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -179,7 +179,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rcc_ex.o: C:/Users/Yuval/workspace/Ps
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -187,7 +187,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rtc.o: C:/Users/Yuval/workspace/Psyph
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -195,7 +195,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_rtc_ex.o: C:/Users/Yuval/workspace/Ps
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -203,7 +203,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_spi.o: C:/Users/Yuval/workspace/Psyph
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -211,7 +211,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim.o: C:/Users/Yuval/workspace/Psyph
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -219,7 +219,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_tim_ex.o: C:/Users/Yuval/workspace/Ps
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
@@ -227,7 +227,7 @@ Drivers/STM32F4xx_HAL_Driver/stm32f4xx_hal_uart.o: C:/Users/Yuval/workspace/Psyp
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU GCC Compiler'
 	@echo %cd%
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -Os -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F401xE -I"C:/Users/Yuval/workspace/Psyphas/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Include" -I"C:/Users/Yuval/workspace/Psyphas/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Users/Yuval/workspace/Psyphas/Inc"  -O0 -g3 -Wall -fmessage-length=0 -ffunction-sections -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 
