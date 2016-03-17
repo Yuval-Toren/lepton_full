@@ -285,7 +285,9 @@ int main(void)
   uint32_t i = 0;
   uint32_t j = 0;
   uint32_t send_d[1] = {0};
-
+  uint8_t framey[60]; // X Gal check
+  uint8_t frame[60][160]; // X
+  uint8_t deadbeef[4] = {0xDE,0xAD,0xBE,0xEF};
   //read_reg(0x2);
 
 
@@ -301,6 +303,49 @@ int main(void)
   	    	 //HAL_Delay(200);
   	      }
   	    } while ((packet[0] & 0x0f) == 0x0f);
+
+  /*
+				// X Gal check
+					  dma_done=0;
+					  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
+					  framey[0] = packet[1];
+					  while(dma_done==0);
+
+  	    		// X Gal check
+					  dma_done=0;
+					  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
+					  framey[1] = packet[1];
+					  while(dma_done==0);
+
+  	    		// X Gal check
+					  dma_done=0;
+					  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
+					  framey[2] = packet[1];
+					  while(dma_done==0);
+
+  	    	    // X Gal check
+					  dma_done=0;
+					  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
+					  framey[3] = packet[1];
+					  while(dma_done==0);
+
+				// X Gal check
+					  dma_done=0;
+					  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
+					  framey[4] = packet[1];
+					  while(dma_done==0);
+
+				  // X Gal check
+					  dma_done=0;
+					  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
+					  framey[5] = packet[1];
+					  while(dma_done==0);
+
+				  // X Gal check
+					  dma_done=0;
+					  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
+					  framey[6] = packet[1];*/
+
 
 
 	  /*lepton_command(VID, 0x18 >> 2 , GET);
@@ -323,13 +368,31 @@ int main(void)
 			  HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
 		  }
 	  }*/
+  uint8_t k=0; // Y Gal check
   while (1)
   {
 	  if (dma_done==1) {
 		  dma_done=0;
 		  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
-	  }
+		  k = packet[1];
+				  //for (int j=0;j<VOSPI_FRAME_SIZE-4;j++)
+				  //{
+					//  frame[k][j] = packet[4 + j];
+				  //}
 
+			  framey[k] = k;//packet[1]; // Y Gal check
+			  //k++; // Y Gal check
+			  //if (k==59)
+			  if (k==59) // Y Gal check
+			  {
+				  k=0;
+				  //HAL_UART_Transmit(&huart1,(uint8_t*)0xDE,1,1000);
+				  //HAL_UART_Transmit(&huart1,(uint8_t*)0xAD,1,1000);
+				  //HAL_UART_Transmit(&huart1,(uint8_t*)0xBE,1,1000);
+				  HAL_UART_Transmit(&huart1,deadbeef,4,1000);
+				  HAL_UART_Transmit(&huart1,framey,60,1000);
+			  }
+		 }
   }
 
 
@@ -376,26 +439,26 @@ void SystemClock_Config(void)
 
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)//Happens at the end of RX transaction
 {
-	int send_d[1] = {'0'};
-	uint8_t* data = hspi->pRxBuffPtr;
-	int frame;
-	frame=1;
-	frame = data[0] & 0xf;
-	uint8_t frame2 = data[1];
+	//int send_d[1] = {'0'};
+	//uint8_t* data = hspi->pRxBuffPtr;
+	//uint8_t frame;
+	//frame=1;
+	// frame = data[0] & 0xf;
+	// uint8_t frame2 = data[1];
 
-	if (frame2 == 1) {
-		frame2=1;
-	}
-	if(frame != 0xf)
-	{
-		send_d[0] = frame;//everything is O.K.
-		HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
-	}
-	else
-	{
-		send_d[0] = 'r';//need re-sync
-		HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
-	}
+	//if (frame2 == 1) { //Dan used to validate
+	//	frame2=1;
+	//}
+	//if(frame != 0xf)
+	//{
+	//	send_d[0] = frame;//everything is O.K.
+	//	HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
+	//}
+	//else
+	//{
+	//	send_d[0] = 'r';//need re-sync
+	//	HAL_UART_Transmit(&huart1,(uint8_t*)send_d,1,1000);
+	//}
 
 	  dma_done=1;
 
