@@ -375,12 +375,12 @@ int main(void)
 		  dma_done=0;
 		  HAL_SPI_Receive_DMA(&hspi1, packet , VOSPI_FRAME_SIZE);
 		  k = packet[1];
-				  //for (int j=0;j<VOSPI_FRAME_SIZE-4;j++)
-				  //{
-					//  frame[k][j] = packet[4 + j];
-				  //}
+				  for (int j=0;j<VOSPI_FRAME_SIZE-4;j++)
+				  {
+					  frame[k][j] = packet[4 + j];
+				  }
 
-			  framey[k] = k;//packet[1]; // Y Gal check
+			  //framey[k] = k;//packet[1]; // Y Gal check
 			  //k++; // Y Gal check
 			  //if (k==59)
 			  if (k==59) // Y Gal check
@@ -390,7 +390,7 @@ int main(void)
 				  //HAL_UART_Transmit(&huart1,(uint8_t*)0xAD,1,1000);
 				  //HAL_UART_Transmit(&huart1,(uint8_t*)0xBE,1,1000);
 				  HAL_UART_Transmit(&huart1,deadbeef,4,1000);
-				  HAL_UART_Transmit(&huart1,framey,60,1000);
+				  HAL_UART_Transmit(&huart1,framey,9600,1000);
 			  }
 		 }
   }
